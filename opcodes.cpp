@@ -10,8 +10,7 @@ const char* DEBUG_STR = "PC: {}\t INSTR: {} ({}) \n";
 
 #define CALL_FN(tableName, AND_CONSTANT) { (*this.*tableName[opcode & AND_CONSTANT])(); }
 
-template <typename T, typename = std::enable_if<std::is_integral_v<T> > >
-inline static std::string hex_transform(const T& number) {
+inline static std::string hex_transform(const u16& number) {
 	char buffer[24];
 #ifdef _MSC_VER
 	sprintf_s(buffer, "0x%X", number);
