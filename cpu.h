@@ -7,18 +7,18 @@
 namespace chip8 {
 	class CPU {
 	private:
-		u8 stack_pointer{};
-		u8 delayTimer{};
-		u8 soundTimer{};
-		u16 index{};
-		u16 program_counter{};
+		u8 stack_pointer{0};
+		u8 delayTimer{0};
+		u8 soundTimer{0};
+		u16 index{0};
+		u16 program_counter{0};
 		u16 opcode;
 		std::array<u8, 16> V{};
 		std::array<u8, 4096> memory{};
 		std::array<u16, 16> stack{};
 
 		size_t VIDEO_WIDTH = 64, VIDEO_HEIGHT = 32;
-		chip8::random_gen rnd;
+		random_gen rnd;
 	public:
 		std::array<u32, 64 * 32> video{};
 		std::array<u8, 16> keys{};
@@ -59,12 +59,14 @@ namespace chip8 {
 		void OP_Fx55();
 		void OP_Fx65();
 		void OP_NOP();
-		typedef void(CPU::* c8_fn)();
-		c8_fn table[0x10]{ &CPU::OP_NOP };
-		c8_fn table0[0xF]{ &CPU::OP_NOP };
-		c8_fn table8[0xF]{ &CPU::OP_NOP };
-		c8_fn tableE[0xF]{ &CPU::OP_NOP };
-		c8_fn tableF[0x66]{ &CPU::OP_NOP };
+		typedef void(CPU::* FN_PTR)();
+
+		
+		FN_PTR table[0x10]{  };
+		FN_PTR table0[0xF]{  };
+		FN_PTR table8[0xF]{  };
+		FN_PTR tableE[0xF]{  };
+		FN_PTR tableF[0x66]{  };
 
 		void Table0();
 

@@ -2,12 +2,11 @@
 #include "opcodes.h"
 #include "cpu.h"
 #include "log.h"
-#include <sstream>
 
 #define Vx ((u8)((opcode & 0x0F00U) >> 8U))
 #define Vy ((u8)((opcode & 0x00F0U) >> 4U))
 
-const char* DEBUG_STR = "PC: {}\t Opcode: {}\t FN: {}";
+const char* DEBUG_STR = "PC: {}\t INSTR: {} ({}) \n";
 
 #define CALL_FN(tableName, AND_CONSTANT) { (*this.*tableName[opcode & AND_CONSTANT])(); }
 

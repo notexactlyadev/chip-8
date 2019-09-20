@@ -11,17 +11,14 @@ namespace chip8 {
 
 		~SDL_Platform();
 
-		void Update(void const* buffer, int) const;
+		void Update(void const*, int) const;
 
-		static bool ProcessInput(uint8_t* keys);
+		static bool ProcessInput(uint8_t*);
 
 	private:
 		SDL_Window* window{};
 		SDL_Renderer* renderer{};
 		SDL_Texture* texture{};
+		
 	};
 }
-
-
-
-

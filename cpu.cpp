@@ -63,7 +63,6 @@ chip8::CPU::CPU() : program_counter(START_ADDRESS)  {
 	tableF[0x65] = &CPU::OP_Fx65;
 	
 	C8_INFO("STARTING CPU AT ADDRESS {}...", reinterpret_cast<void*>(this));
-	C8_INFO("PC: {}", program_counter);
 	for (size_t i = 0; i < FONTSET_SZ; ++i) {
 		memory.at(FONTSET_START + i) = fontset[i];
 	}
