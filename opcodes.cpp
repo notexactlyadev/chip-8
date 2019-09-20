@@ -6,8 +6,6 @@
 #define Vx ((u8)((opcode & 0x0F00U) >> 8U))
 #define Vy ((u8)((opcode & 0x00F0U) >> 4U))
 
-const char* DEBUG_STR = "PC: {}\t INSTR: {} ({}) \n";
-
 #define CALL_FN(tableName, AND_CONSTANT) { (*this.*tableName[opcode & AND_CONSTANT])(); }
 
 inline static std::string hex_transform(const u16& number) {
@@ -20,7 +18,7 @@ inline static std::string hex_transform(const u16& number) {
 	return { buffer };
 }
 
-#define LOG_EXECUTION { C8_TRACE(DEBUG_STR, program_counter, hex_transform(opcode), __FUNCTION__); }
+#define LOG_EXECUTION { C8_TRACE("PC: {}\t INSTR: {} ({})", program_counter, hex_transform(opcode), __FUNCTION__); }
 
 namespace chip8 {
 
